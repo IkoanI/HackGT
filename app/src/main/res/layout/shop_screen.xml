@@ -130,14 +130,14 @@
         android:text="Coming Soon....."
         android:textColor="@color/white"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/back_button_market"
+        app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_bt2" />
 
     <Button
-        android:id="@+id/back_button_market"
+        android:id="@+id/button10"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="200dp"
@@ -149,7 +149,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/shop_screen_label"
+        android:id="@+id/shop_sign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
