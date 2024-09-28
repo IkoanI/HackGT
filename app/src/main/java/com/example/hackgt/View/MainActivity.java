@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private Button shopMove;
     private Button chestMove;
     private Button animalMove;
-    int coins = 0;
+    public static int coins = 0;
     TextView amountOfCoins;
 
     @Override
@@ -201,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
                 coins = Math.floorDiv(steps, 50);
                 amountOfCoins.setText(String.format(Locale.ENGLISH, "Coins: %d", coins));
+
             }
         }
     }
