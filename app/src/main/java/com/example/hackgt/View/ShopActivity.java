@@ -24,6 +24,14 @@ public class ShopActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        findViewById(R.id.shop)
+        shopBackButton = findViewById(R.id.shop_back_bt);
+        shopBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShopActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
