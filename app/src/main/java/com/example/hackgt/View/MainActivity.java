@@ -35,12 +35,13 @@ import com.google.android.gms.fitness.request.LocalDataReadRequest;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     public static final int ACTIVITY_REQUEST = 1;
-    int steps = 0;
+    public static int steps = 0;
     String stepGoal;
     TextView stepsTaken;
     ProgressBar progressBar;
@@ -153,8 +154,6 @@ public class MainActivity extends AppCompatActivity {
                 .setTimeRange(startTime.toEpochSecond(), endTime.toEpochSecond(), TimeUnit.SECONDS)
                 .build();
 
-
-
     }
 
     public void readStepsData(){
@@ -170,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void dumpDataSet(LocalDataSet dataSet){
+        int chestThreshold = (int) (Math.random() * 499 + 1);
         String TAG = "TESTING";
         Log.i(TAG, "Data returned for Data type: " + dataSet.getDataType().getName());
         for (LocalDataPoint dp : dataSet.getDataPoints()) {
@@ -190,8 +190,22 @@ public class MainActivity extends AppCompatActivity {
                 progressBar.setProgress(steps * 100 / Integer.parseInt(stepGoal));
 
                 Player.coins = Math.floorDiv(steps, 1) - Player.spent;
-                amountOfCoins.setText(String.format(Locale.ENGLISH, "Coins: %d", Player.coins));
+                if (steps - Player.baseSteps >= chestThreshold) {
+                    if (Player.chestInventory.size() < 5) {
+                        Chests chestTemp = new Chests(steps);
+                        Player.chestInventory.addToBack(chestTemp);
+                        chestThreshold += (int) (Math.random() * 499 + 1);
+                    }
+                }
 
+                if (steps >= Player.chestInventory.getHead().getData().getEndCount()) {
+
+                    Player.coins += Player.chestInventory.getHead().getData().getReward();
+                    Player.chestInventory.removeFromFront();
+                    Player.chestInventory.setHead(Player.chestInventory.getHead().getNext());
+                }
+
+                amountOfCoins.setText(String.format(Locale.ENGLISH, "Coins: %d", Player.coins));
             }
         }
     }
