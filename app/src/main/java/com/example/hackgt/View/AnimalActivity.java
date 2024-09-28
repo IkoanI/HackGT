@@ -3,9 +3,12 @@ package com.example.hackgt.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -100,5 +103,4 @@ public class AnimalActivity extends AppCompatActivity {
         item2_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[1]));
         item3_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[2]));
     }
-
 }
