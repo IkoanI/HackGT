@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shop_screen_background"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/animal_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Animal Name"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/animal_image"
+        android:layout_width="192dp"
+        android:layout_height="213dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animal_name"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ProgressBar
+        android:id="@+id/animal_level_pb"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animal_image" />
+
+    <TextView
+        android:id="@+id/level_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:text="Level"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/animal_food2_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="330dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/animal_food1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="330dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/animal_food1_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Amount"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/animal_food1"
+        app:layout_constraintStart_toStartOf="@+id/animal_food1"
+        app:layout_constraintTop_toBottomOf="@+id/animal_food1" />
+
+    <TextView
+        android:id="@+id/animal_food2_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Amount"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/animal_food2_image"
+        app:layout_constraintStart_toStartOf="@+id/animal_food2_image"
+        app:layout_constraintTop_toBottomOf="@+id/animal_food2_image" />
+
+    <Button
+        android:id="@+id/animal_food1_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Feed"
+        app:layout_constraintEnd_toEndOf="@+id/animal_food1_text"
+        app:layout_constraintStart_toStartOf="@+id/animal_food1_text"
+        app:layout_constraintTop_toBottomOf="@+id/animal_food1_text" />
+
+    <Button
+        android:id="@+id/animal_food2_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Feed"
+        app:layout_constraintEnd_toEndOf="@+id/animal_food2_text"
+        app:layout_constraintStart_toStartOf="@+id/animal_food2_text"
+        app:layout_constraintTop_toBottomOf="@+id/animal_food2_text" />
+
+    <ImageView
+        android:id="@+id/animal_food3_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="235dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/level_text"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/animal_food3_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Amount"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/animal_food3_image"
+        app:layout_constraintStart_toStartOf="@+id/animal_food3_image"
+        app:layout_constraintTop_toBottomOf="@+id/animal_food3_image" />
+
+    <Button
+        android:id="@+id/animal_food3_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Feed"
+        app:layout_constraintEnd_toEndOf="@+id/animal_food3_text"
+        app:layout_constraintStart_toStartOf="@+id/animal_food3_text"
+        app:layout_constraintTop_toBottomOf="@+id/animal_food3_text" />
+
+    <Button
+        android:id="@+id/back_button_animal"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Back"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

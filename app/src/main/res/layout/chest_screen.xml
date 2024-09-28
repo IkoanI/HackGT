@@ -39,46 +39,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/curr_step_chest1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        android:text="x"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/chest1_image"
-        app:layout_constraintTop_toBottomOf="@+id/chest1_image" />
-
-    <TextView
-        android:id="@+id/end_step_chest1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:text="/x"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/chest1_image"
-        app:layout_constraintTop_toBottomOf="@+id/chest1_image" />
-
-    <TextView
-        android:id="@+id/curr_step_chest2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="x"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/chest2_image"
-        app:layout_constraintTop_toBottomOf="@+id/chest2_image" />
-
-    <TextView
-        android:id="@+id/end_step_chest2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="/x"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/chest2_image"
-        app:layout_constraintTop_toBottomOf="@+id/chest2_image" />
-
     <ImageView
         android:id="@+id/chest3_image"
         android:layout_width="wrap_content"
@@ -119,46 +79,6 @@
         app:layout_constraintStart_toStartOf="@+id/chest2_image"
         app:layout_constraintTop_toBottomOf="@+id/chest2_image" />
 
-    <TextView
-        android:id="@+id/curr_step_chest3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="x"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/chest3_image"
-        app:layout_constraintTop_toBottomOf="@+id/chest3_image" />
-
-    <TextView
-        android:id="@+id/end_step_chest3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="/x"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/chest3_image"
-        app:layout_constraintTop_toBottomOf="@+id/chest3_image" />
-
-    <TextView
-        android:id="@+id/curr_step_chest4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="x"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/chest4_image"
-        app:layout_constraintTop_toBottomOf="@+id/chest4_image" />
-
-    <TextView
-        android:id="@+id/end_step_chest4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="/x"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/chest4_image"
-        app:layout_constraintTop_toBottomOf="@+id/chest4_image" />
-
     <Button
         android:id="@+id/button_chest3"
         android:layout_width="wrap_content"
@@ -189,5 +109,49 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/step_chest1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="x/x"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/chest1_image"
+        app:layout_constraintStart_toStartOf="@+id/chest1_image"
+        app:layout_constraintTop_toBottomOf="@+id/chest1_image" />
+
+    <TextView
+        android:id="@+id/step_chest2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="x/x"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/chest2_image"
+        app:layout_constraintStart_toStartOf="@+id/chest2_image"
+        app:layout_constraintTop_toBottomOf="@+id/chest2_image" />
+
+    <TextView
+        android:id="@+id/step_chest3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="x/x"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/button_chest3"
+        app:layout_constraintStart_toStartOf="@+id/button_chest3"
+        app:layout_constraintTop_toBottomOf="@+id/chest3_image" />
+
+    <TextView
+        android:id="@+id/step_chest4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="x/x"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/button_chest4"
+        app:layout_constraintStart_toStartOf="@+id/button_chest4"
+        app:layout_constraintTop_toBottomOf="@+id/chest4_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
