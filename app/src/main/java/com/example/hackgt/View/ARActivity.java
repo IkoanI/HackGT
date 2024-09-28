@@ -9,6 +9,7 @@ import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,11 +23,29 @@ import com.google.ar.core.ArCoreApk;
 import com.google.ar.core.exceptions.*;
 import com.example.hackgt.R;
 
+import java.io.IOException;
+import java.io.InputStream;
+import com.google.ar.core.Anchor;
+import com.google.ar.core.HitResult;
+import com.google.ar.core.Plane;
+import com.google.ar.core.Point;
+import com.google.ar.core.TrackingState;
+import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.ArSceneView;
+import com.google.ar.sceneform.ux.ArFragment;
+import com.google.ar.sceneform.ux.TransformableNode;
+import com.google.ar.sceneform.rendering.ModelRenderable;
+import com.google.ar.sceneform.rendering.Renderable;
+
 public class ARActivity extends AppCompatActivity {
     private Session arSession;
     private boolean mUserRequestedInstall = true;
     private static final int CAMERA_PERMISSION_CODE = 0;
     private CameraDevice cameraDevice;
+
+    // AR Fragment to handle plane detection and AR UI interactions
+    private ArFragment arFragment;
+    private ModelRenderable modelRenderable;
 
     private CameraDevice.StateCallback stateCallback = new CameraDevice.StateCallback() {
         @Override
@@ -65,7 +84,43 @@ public class ARActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ar);
+
+        arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ar_fragment);
+
+        // Load the model
+        loadModel();
+
+        // Set a tap listener to place the object in AR
+        arFragment.setOnTapArPlaneListener((HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
+            if (modelRenderable == null) {
+                return;
+
+            }
+
+            // Create the Anchor
+            Anchor anchor = hitResult.createAnchor();
+            AnchorNode anchorNode = new AnchorNode(anchor);
+            anchorNode.setParent(arFragment.getArSceneView().getScene());
+
+            // Create the transformable object and attach the model to it
+            TransformableNode modelNode = new TransformableNode(arFragment.getTransformationSystem());
+            modelNode.setParent(anchorNode);
+            modelNode.setRenderable(modelRenderable);
+            modelNode.select();
+        });
     }
+
+    private void loadModel() {
+        ModelRenderable.builder()
+                .setSource(this, R.raw.pug)  // Make sure model.obj is in res/raw
+                .build()
+                .thenAccept(renderable -> modelRenderable = renderable)
+                .exceptionally(throwable -> {
+                    Toast.makeText(this, "Unable to load 3D model", Toast.LENGTH_LONG).show();
+                    return null;
+                });
+    }
+
 
     @Override
     protected void onResume() {
@@ -78,20 +133,39 @@ public class ARActivity extends AppCompatActivity {
     }
 
     private void initializeAR() {
-        if (arSession == null) {
-            try {
-                switch (ArCoreApk.getInstance().requestInstall(this, mUserRequestedInstall)) {
-                    case INSTALLED:
-                        openCamera();
-                        break;
-                    case INSTALL_REQUESTED:
-                        mUserRequestedInstall = false;
-                        return;
-                }
-            } catch (UnavailableException e) {
-                handleException(e);
-                return;
+        // Check if ARCore is installed and ready to use
+        try {
+            switch (ArCoreApk.getInstance().requestInstall(this, mUserRequestedInstall)) {
+                case INSTALLED:
+                    // ARCore is already installed, continue AR initialization
+                    if (arSession == null) {
+                        arSession = new Session(this);
+                        Config config = new Config(arSession);
+                        config.setUpdateMode(Config.UpdateMode.LATEST_CAMERA_IMAGE);
+                        arSession.configure(config);
+                    }
+                    break;
+                case INSTALL_REQUESTED:
+                    // Request ARCore installation
+                    mUserRequestedInstall = false;
+                    return;
             }
+        } catch (UnavailableArcoreNotInstalledException |
+                 UnavailableUserDeclinedInstallationException e) {
+            Toast.makeText(this, "Please install ARCore", Toast.LENGTH_LONG).show();
+            return;
+        } catch (UnavailableApkTooOldException e) {
+            Toast.makeText(this, "Please update ARCore", Toast.LENGTH_LONG).show();
+            return;
+        } catch (UnavailableSdkTooOldException e) {
+            Toast.makeText(this, "Please update this app", Toast.LENGTH_LONG).show();
+            return;
+        } catch (UnavailableDeviceNotCompatibleException e) {
+            Toast.makeText(this, "This device does not support AR", Toast.LENGTH_LONG).show();
+            return;
+        } catch (Exception e) {
+            Toast.makeText(this, "Failed to initialize AR session", Toast.LENGTH_LONG).show();
+            return;
         }
     }
 
@@ -139,11 +213,6 @@ public class ARActivity extends AppCompatActivity {
             arSession.close();
             arSession = null;
         }
-    }
-
-    private void handleException(Exception e) {
-        Log.e("ARActivity", "Exception in AR setup: " + e.getMessage(), e);
-        Toast.makeText(this, "Error initializing ARCore: " + e.getMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
