@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.hackgt"
-        minSdk = 24
+        minSdk = 34
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
