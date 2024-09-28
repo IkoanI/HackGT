@@ -3,7 +3,6 @@ package com.example.hackgt.View;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,18 +18,7 @@ import com.example.hackgt.R;
 import java.util.Locale;
 
 public class AnimalActivity extends AppCompatActivity {
-    private Button backMain;
-    private TextView item1_amount;
-    private TextView item2_amount;
-    private TextView item3_amount;
-    private TextView levelCurr;
-    private int level = 0;
-    private Button item1bt;
-    private Button item2bt;
-    private Button item3bt;
-    private ProgressBar progress;
-    private int progressPercent;
-
+    TextView item1_amount, item2_amount, item3_amount, levelCurr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,76 +30,75 @@ public class AnimalActivity extends AppCompatActivity {
             return insets;
         });
 
-        progress = findViewById(R.id.animal_level_pb);
-        progress.setProgress(progressPercent/100);
+        ProgressBar progress = findViewById(R.id.animal_level_pb);
+        progress.setProgress(Player.animalProgress);
 
         levelCurr = findViewById(R.id.level_text);
-        levelCurr.setText(String.format(Locale.ENGLISH, "Level: %d", level));
 
         item1_amount = findViewById(R.id.animal_food1_text);
-        item1_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[0]));
-
-        item1_amount = findViewById(R.id.animal_food1_text);
-        item1_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[0]));
 
         item2_amount = findViewById(R.id.animal_food2_text);
-        item2_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[1]));
 
         item3_amount = findViewById(R.id.animal_food3_text);
-        item3_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[2]));
 
-        backMain = findViewById(R.id.back_button_animal);
-        backMain.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AnimalActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-            }
+        progressChecker();
+        updateItems();
+
+        Button backMain = findViewById(R.id.back_button_animal);
+        backMain.setOnClickListener((v -> {
+            Intent intent = new Intent(AnimalActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
         }));
 
-        item1bt = findViewById(R.id.animal_food1_bt);
-        item1bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Player.items[0] > 0) {
-                    Player.items[0]  -= 1;
-                    progressPercent += 5;
-                    progressChecker();
-                }
+        Button item1bt = findViewById(R.id.animal_food1_bt);
+        item1bt.setOnClickListener(v -> {
+            if (Player.items[0] > 0) {
+                Player.items[0]  -= 1;
+                Player.animalProgress += 5;
+                progressChecker();
+                updateItems();
+                progress.setProgress(Player.animalProgress);
+
             }
         });
 
-        item2bt = findViewById(R.id.animal_food2_bt);
-        item2bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Player.items[1] > 0) {
-                    Player.items[1] -= 1;
-                    progressPercent += 40;
-                    progressChecker();
-                }
+        Button item2bt = findViewById(R.id.animal_food2_bt);
+        item2bt.setOnClickListener(v -> {
+            if (Player.items[1] > 0) {
+                Player.items[1] -= 1;
+                Player.animalProgress += 40;
+                progressChecker();
+                updateItems();
+                progress.setProgress(Player.animalProgress);
+
             }
         });
 
-        item3bt = findViewById(R.id.animal_food3_bt);
-        item3bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Player.items[2] > 0) {
-                    Player.items[2] -= 1;
-                    progressPercent += 100;
-                    progressChecker();
-                }
+        Button item3bt = findViewById(R.id.animal_food3_bt);
+        item3bt.setOnClickListener(v -> {
+            if (Player.items[2] > 0) {
+                Player.items[2] -= 1;
+                Player.animalProgress += 100;
+                progressChecker();
+                updateItems();
+                progress.setProgress(Player.animalProgress);
             }
         });
     }
 
     private void progressChecker() {
-        if (progressPercent >= 100) {
-            progressPercent -= 100;
-            level += 1;
+        if (Player.animalProgress >= 100) {
+            Player.animalProgress -= 100;
+            Player.animalLevel += 1;
         }
+        levelCurr.setText(String.format(Locale.ENGLISH, "Level: %d", Player.animalLevel));
+    }
+
+    private void updateItems(){
+        item1_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[0]));
+        item2_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[1]));
+        item3_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[2]));
     }
 
 }

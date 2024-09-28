@@ -62,7 +62,7 @@ public class ShopActivity extends AppCompatActivity {
             if (Player.coins >= 35) {
                 Player.spent += 35;
                 Player.items[1] += 1;
-                item2_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[0]));
+                item2_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[1]));
                 Player.coins -= 35;
                 coinWord.setText(String.format(Locale.ENGLISH, "Coins: %d", Player.coins));
             }
@@ -73,7 +73,7 @@ public class ShopActivity extends AppCompatActivity {
             if (Player.coins > 75) {
                 Player.spent += 75;
                 Player.items[2] += 1;
-                item3_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[0]));
+                item3_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[2]));
                 Player.coins -= 75;
                 coinWord.setText(String.format(Locale.ENGLISH, "Coins: %d", Player.coins));
             }

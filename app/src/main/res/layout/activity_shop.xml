@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.295"
-        tools:srcCompat="@drawable/starfruit_ar" />
+        android:src="@drawable/starfruit_ar" />
 
     <TextView
         android:id="@+id/item1_name"
@@ -44,7 +44,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.295"
-        tools:srcCompat="@drawable/banana_ar" />
+        android:src="@drawable/banana_ar" />
 
     <TextView
         android:id="@+id/item2_name"
@@ -68,7 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.295"
-        tools:srcCompat="@drawable/apple_ar" />
+        android:src="@drawable/apple_ar" />
 
     <TextView
         android:id="@+id/item3_name"

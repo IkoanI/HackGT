@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/animalXML"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shop_screen_background"
-    android:padding="16dp"
-    android:id="@+id/animalXML">
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/animal_name"
@@ -25,11 +25,11 @@
         android:layout_width="192dp"
         android:layout_height="213dp"
         android:layout_marginTop="8dp"
+        android:src="@drawable/banana_ar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animal_name"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/animal_name" />
 
     <ProgressBar
         android:id="@+id/animal_level_pb"
@@ -48,29 +48,27 @@
         android:layout_marginTop="300dp"
         android:text="Level"
         android:textColor="@color/white"
+        android:paddingBottom="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/animal_food2_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="330dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/banana_ar"
+        app:layout_constraintEnd_toStartOf="@+id/animal_food3_image"
+        app:layout_constraintStart_toEndOf="@+id/animal_food1"
+        app:layout_constraintTop_toBottomOf="@+id/level_text" />
 
     <ImageView
         android:id="@+id/animal_food1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="330dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/level_text"
+        android:src="@drawable/apple_ar" />
 
     <TextView
         android:id="@+id/animal_food1_text"
@@ -116,13 +114,11 @@
 
     <ImageView
         android:id="@+id/animal_food3_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="235dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/starfruit_ar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/level_text"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/level_text" />
 
     <TextView
         android:id="@+id/animal_food3_text"
