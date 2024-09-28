@@ -15,6 +15,15 @@
         android:theme="@style/Theme.HackGT"
         tools:targetApi="31">
         <activity
+            android:name=".View.AnimalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.ChestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.ShopActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.MainActivity"
             android:exported="false" />
         <activity
