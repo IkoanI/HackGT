@@ -22,6 +22,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.hackgt.R;
+import com.example.hackgt.View.helloar.HelloArActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.fitness.FitnessLocal;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         checkGooglePlayVersion();
 
         findViewById(R.id.armode_button).setOnClickListener(v -> {
-            Intent arIntent = new Intent(MainActivity.this, ARActivity.class);
+            Intent arIntent = new Intent(MainActivity.this, HelloArActivity.class);
             startActivity(arIntent);
         });
 
