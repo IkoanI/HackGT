@@ -13,6 +13,7 @@ core = "1.45.0"
 sceneformAndroidSdk = "1.x.x"
 sceneformUx = "1.17.1"
 assets = "1.17.1"
+common = "18.11.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -28,6 +29,7 @@ core = { group = "com.google.ar", name = "core", version.ref = "core" }
 sceneform-android-sdk = { module = "com.github.thomasgorisse:sceneform-android-sdk", version.ref = "sceneformAndroidSdk" }
 sceneform-ux = { group = "com.google.ar.sceneform.ux", name = "sceneform-ux", version.ref = "sceneformUx" }
 assets = { group = "com.google.ar.sceneform", name = "assets", version.ref = "assets" }
+common = { group = "com.google.mlkit", name = "common", version.ref = "common" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-//    implementation (libs.sceneform.android.sdk)
+    implementation (libs.sceneform.android.sdk)
     implementation(libs.play.services.fitness)
     implementation(libs.play.services.location)
     implementation(libs.appcompat)
@@ -42,6 +42,7 @@ dependencies {
     implementation (libs.core)
     implementation (libs.sceneform.ux)
     implementation(libs.assets)
+    implementation(libs.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

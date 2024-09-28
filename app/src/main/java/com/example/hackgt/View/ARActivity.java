@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -36,6 +37,8 @@ import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.rendering.Renderable;
+import com.google.mlkit.common.sdkinternal.model.ModelLoader;
+
 
 public class ARActivity extends AppCompatActivity {
     private Session arSession;
@@ -111,15 +114,18 @@ public class ARActivity extends AppCompatActivity {
 
     private void loadModel() {
         ModelRenderable.builder()
-                .setSource(this, R.raw.pug)  // Make sure model.obj is in res/raw
+                .setSource(this, Uri.parse("pug.glb"))
                 .build()
-                .thenAccept(renderable -> modelRenderable = renderable)
+                .thenAccept(renderable -> {
+                    modelRenderable = renderable;
+                    // setTapListener(); // Removed as it is not defined
+                })
                 .exceptionally(throwable -> {
-                    Toast.makeText(this, "Unable to load 3D model", Toast.LENGTH_LONG).show();
+                    Log.e("ModelLoading", "Unable to load 3D model", throwable);
+                    Toast.makeText(this, "Unable to load 3D model: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                     return null;
                 });
     }
-
 
     @Override
     protected void onResume() {
