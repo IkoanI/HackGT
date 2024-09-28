@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         usernameTextView.setText(username);
         checkGooglePlayVersion();
 
-        findViewById(R.id.ar_button).setOnClickListener(v -> {
+        findViewById(R.id.armode_button).setOnClickListener(v -> {
             Intent arIntent = new Intent(MainActivity.this, ARActivity.class);
             startActivity(arIntent);
         });
@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
                     getFitnessData();
                 }
                 readStepsData();
-                handler.postDelayed(this,100000);
+                handler.postDelayed(this,1000);
             }
-        },100000);
+        },1000);
 
         shopMove = findViewById(R.id.shop_button);
         shopMove.setOnClickListener(new View.OnClickListener() {
