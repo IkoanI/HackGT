@@ -23,24 +23,18 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.fitness.FitnessLocal;
 import com.google.android.gms.fitness.LocalRecordingClient;
-import com.google.android.gms.fitness.data.DataPoint;
-import com.google.android.gms.fitness.data.Field;
 import com.google.android.gms.fitness.data.LocalBucket;
 import com.google.android.gms.fitness.data.LocalDataPoint;
 import com.google.android.gms.fitness.data.LocalDataSet;
 import com.google.android.gms.fitness.data.LocalDataType;
 import com.google.android.gms.fitness.data.LocalField;
-import com.google.android.gms.fitness.data.LocalValue;
 import com.google.android.gms.fitness.request.LocalDataReadRequest;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Stream;
 
 public class MainActivity extends AppCompatActivity {
     public static final int ACTIVITY_REQUEST = 1;
@@ -54,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.noar_gameplay);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.armode_button), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
