@@ -2,22 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/armode_button"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gameplay_noar_bg"
     android:padding="16dp"
-    android:scrollbarSize="10dp"
-    android:background="@drawable/gameplay_noar_bg">
+    android:scrollbarSize="10dp">
 
     <Button
         android:id="@+id/settings_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
+        android:backgroundTint="#5D85E2"
         android:text="Settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="#5D85E2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/num_of_steps"
@@ -35,11 +35,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:backgroundTint="#5D85E2"
         android:text="Shop"
         android:textColorLink="#FFEB3B"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="#5D85E2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -59,20 +59,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:backgroundTint="#5D85E2"
         android:text="Chests"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="#5D85E2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/animalscreen_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
+        android:backgroundTint="#5D85E2"
         android:text="Animals"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="#5D85E2" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/username_pb"
@@ -95,6 +95,15 @@
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
