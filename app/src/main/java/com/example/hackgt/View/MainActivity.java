@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     LocalRecordingClient fitnessClient;
     LocalDataReadRequest readRequest;
-    private Button move;
+    private Button shopMove;
+    private Button chestMove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,14 +86,24 @@ public class MainActivity extends AppCompatActivity {
             }
         },1000);
 
-        move = findViewById(R.id.shop_button);
-        move.setOnClickListener(new View.OnClickListener() {
+        shopMove = findViewById(R.id.shop_button);
+        shopMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ShopActivity.class);
                 startActivity(intent);
             }
         });
+
+        chestMove = findViewById(R.id.chestscreen_button);
+        chestMove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ChestActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
