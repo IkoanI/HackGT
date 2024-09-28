@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -47,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     LocalRecordingClient fitnessClient;
     LocalDataReadRequest readRequest;
-    private Button shopMove;
-    private Button chestMove;
-    private Button animalMove;
-    public static int coins = 500;
     TextView amountOfCoins;
 
     @Override
@@ -96,31 +91,22 @@ public class MainActivity extends AppCompatActivity {
             }
         },1000);
 
-        shopMove = findViewById(R.id.shop_button);
-        shopMove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ShopActivity.class);
-                startActivity(intent);
-            }
+        Button shopMove = findViewById(R.id.shop_button);
+        shopMove.setOnClickListener(v -> {
+            Intent intent1 = new Intent(MainActivity.this, ShopActivity.class);
+            startActivity(intent1);
         });
 
-        chestMove = findViewById(R.id.chestscreen_button);
-        chestMove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ChestActivity.class);
-                startActivity(intent);
-            }
+        Button chestMove = findViewById(R.id.chestscreen_button);
+        chestMove.setOnClickListener(v -> {
+            Intent intent12 = new Intent(MainActivity.this, ChestActivity.class);
+            startActivity(intent12);
         });
 
-        animalMove = findViewById(R.id.animalscreen_button);
-        animalMove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AnimalActivity.class);
-                startActivity(intent);
-            }
+        Button animalMove = findViewById(R.id.animalscreen_button);
+        animalMove.setOnClickListener(v -> {
+            Intent intent13 = new Intent(MainActivity.this, AnimalActivity.class);
+            startActivity(intent13);
         });
 
     }
@@ -196,11 +182,15 @@ public class MainActivity extends AppCompatActivity {
                         " LocalValue: " + dp.getValue(field));
 
                 steps = dp.getValue(field).asInt();
+                if(Player.baseSteps == 0){
+                    Player.baseSteps = steps;
+                }
+                steps -= Player.baseSteps;
                 stepsTaken.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, stepGoal));
                 progressBar.setProgress(steps * 100 / Integer.parseInt(stepGoal));
 
-                coins = Math.floorDiv(steps, 50);
-                amountOfCoins.setText(String.format(Locale.ENGLISH, "Coins: %d", coins));
+                Player.coins = Math.floorDiv(steps, 1) - Player.spent;
+                amountOfCoins.setText(String.format(Locale.ENGLISH, "Coins: %d", Player.coins));
 
             }
         }

@@ -1,8 +1,5 @@
 package com.example.hackgt.View;
 
-import static com.example.hackgt.View.ShopActivity.item1;
-import static com.example.hackgt.View.ShopActivity.item2;
-import static com.example.hackgt.View.ShopActivity.item3;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -52,16 +49,16 @@ public class AnimalActivity extends AppCompatActivity {
         levelCurr.setText(String.format(Locale.ENGLISH, "Level: %d", level));
 
         item1_amount = findViewById(R.id.animal_food1_text);
-        item1_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", item1));
+        item1_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[0]));
 
         item1_amount = findViewById(R.id.animal_food1_text);
-        item1_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", item1));
+        item1_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[0]));
 
         item2_amount = findViewById(R.id.animal_food2_text);
-        item2_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", item2));
+        item2_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[1]));
 
         item3_amount = findViewById(R.id.animal_food3_text);
-        item3_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", item3));
+        item3_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[2]));
 
         backMain = findViewById(R.id.back_button_animal);
         backMain.setOnClickListener((new View.OnClickListener() {
@@ -77,8 +74,8 @@ public class AnimalActivity extends AppCompatActivity {
         item1bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (item1 > 0) {
-                    item1 -= 1;
+                if (Player.items[0] > 0) {
+                    Player.items[0]  -= 1;
                     progressPercent += 5;
                     progressChecker();
                 }
@@ -89,8 +86,8 @@ public class AnimalActivity extends AppCompatActivity {
         item2bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (item2 > 0) {
-                    item2 -= 1;
+                if (Player.items[1] > 0) {
+                    Player.items[1] -= 1;
                     progressPercent += 40;
                     progressChecker();
                 }
@@ -101,8 +98,8 @@ public class AnimalActivity extends AppCompatActivity {
         item3bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (item3 > 0) {
-                    item3 -= 1;
+                if (Player.items[2] > 0) {
+                    Player.items[2] -= 1;
                     progressPercent += 100;
                     progressChecker();
                 }
