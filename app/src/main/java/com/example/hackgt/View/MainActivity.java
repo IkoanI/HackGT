@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -37,22 +36,20 @@ import com.google.android.gms.fitness.request.LocalDataReadRequest;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     public static final int ACTIVITY_REQUEST = 1;
-    int steps = 0;
+    public static int steps = 0;
     String stepGoal;
     TextView stepsTaken;
     ProgressBar progressBar;
     LocalRecordingClient fitnessClient;
     LocalDataReadRequest readRequest;
-    private Button shopMove;
-    private Button chestMove;
-    private Button animalMove;
-    int coins = 0;
     TextView amountOfCoins;
+    int chestThreshold;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
         String username = intent.getStringExtra("Username");
         stepGoal = intent.getStringExtra("Goal");
+
+        chestThreshold = (int) (Math.random() * 499 + 1);
 
         TextView usernameTextView = findViewById(R.id.username_pb);
         stepsTaken = findViewById(R.id.stepsTaken);
@@ -88,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.d("TEST", "RAN");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     getFitnessData();
                 }
@@ -97,31 +95,22 @@ public class MainActivity extends AppCompatActivity {
             }
         },1000);
 
-        shopMove = findViewById(R.id.shop_button);
-        shopMove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ShopActivity.class);
-                startActivity(intent);
-            }
+        Button shopMove = findViewById(R.id.shop_button);
+        shopMove.setOnClickListener(v -> {
+            Intent intent1 = new Intent(MainActivity.this, ShopActivity.class);
+            startActivity(intent1);
         });
 
-        chestMove = findViewById(R.id.chestscreen_button);
-        chestMove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ChestActivity.class);
-                startActivity(intent);
-            }
+        Button chestMove = findViewById(R.id.chestscreen_button);
+        chestMove.setOnClickListener(v -> {
+            Intent intent12 = new Intent(MainActivity.this, ChestActivity.class);
+            startActivity(intent12);
         });
 
-        animalMove = findViewById(R.id.animalscreen_button);
-        animalMove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AnimalActivity.class);
-                startActivity(intent);
-            }
+        Button animalMove = findViewById(R.id.animalscreen_button);
+        animalMove.setOnClickListener(v -> {
+            Intent intent13 = new Intent(MainActivity.this, AnimalActivity.class);
+            startActivity(intent13);
         });
 
     }
@@ -134,10 +123,6 @@ public class MainActivity extends AppCompatActivity {
         if (hasMinPlayServices != ConnectionResult.SUCCESS) {
             // Prompt user to update their device's Google Play services app and return
             Toast.makeText(this, "Update device Google Play services", Toast.LENGTH_SHORT).show();
-        }
-
-        else {
-            Toast.makeText(this, "Google play services up to date!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -168,8 +153,6 @@ public class MainActivity extends AppCompatActivity {
                 .setTimeRange(startTime.toEpochSecond(), endTime.toEpochSecond(), TimeUnit.SECONDS)
                 .build();
 
-
-
     }
 
     public void readStepsData(){
@@ -185,23 +168,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void dumpDataSet(LocalDataSet dataSet){
-        String TAG = "TESTING";
-        Log.i(TAG, "Data returned for Data type: " + dataSet.getDataType().getName());
-        for (LocalDataPoint dp : dataSet.getDataPoints()) {
-            Log.i(TAG,"Data point:");
-            Log.i(TAG,"\tType: " + dp.getDataType().getName());
-            Log.i(TAG,"\tStart: " + dp.getStartTime(TimeUnit.HOURS));
-            Log.i(TAG,"\tEnd: " + dp.getEndTime(TimeUnit.HOURS));
-            for (LocalField field : dp.getDataType().getFields()) {
-                Log.i(TAG,"\tLocalField: " + field.getName() +
-                        " LocalValue: " + dp.getValue(field));
 
+        for (LocalDataPoint dp : dataSet.getDataPoints()) {
+            for (LocalField field : dp.getDataType().getFields()) {
                 steps = dp.getValue(field).asInt();
+
+                if(Player.baseSteps == 0){
+                    Player.baseSteps = steps;
+                }
+
+                steps -= Player.baseSteps;
                 stepsTaken.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, stepGoal));
+
                 progressBar.setProgress(steps * 100 / Integer.parseInt(stepGoal));
 
-                coins = Math.floorDiv(steps, 50);
-                amountOfCoins.setText(String.format(Locale.ENGLISH, "Coins: %d", coins));
+                Log.d("TEST", String.valueOf(chestThreshold));
+                if (steps >= chestThreshold && Player.chestInventory.size() < 5) {
+                    Chests newChest = new Chests(steps);
+                    Player.chestInventory.add(newChest);
+                    chestThreshold += (int) (Math.random() * 499 + 1);
+                    Toast.makeText(this, "You found a chest!", Toast.LENGTH_SHORT).show();
+                }
+
+                if (!Player.chestInventory.isEmpty() && steps >= Player.chestInventory.get(0).getEndCount()) {
+                    Toast.makeText(this, "Chest opened!", Toast.LENGTH_SHORT).show();
+                    Player.spent -= Player.chestInventory.get(0).getReward();
+                    Player.chestInventory.removeFirst();
+                }
+
+                Player.coins = Math.floorDiv(steps, 1) - Player.spent;
+                amountOfCoins.setText(String.format(Locale.ENGLISH, "Coins: %d", Player.coins));
             }
         }
     }
