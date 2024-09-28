@@ -78,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
         usernameTextView.setText(username);
         checkGooglePlayVersion();
 
+        findViewById(R.id.armode_button).setOnClickListener(v -> {
+            Intent arIntent = new Intent(MainActivity.this, ARActivity.class);
+            startActivity(arIntent);
+        });
+
         Handler handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -200,4 +205,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }
