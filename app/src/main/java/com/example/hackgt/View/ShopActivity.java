@@ -21,9 +21,9 @@ import java.util.Locale;
 public class ShopActivity extends AppCompatActivity {
     private Button backMain;
     private TextView coinWord;
-    private int item1 = 0;
-    private int item2 = 0;
-    private int item3 = 0;
+    public static int item1 = 0;
+    public static int item2 = 0;
+    public static int item3 = 0;
     private TextView item1_amount;
     private TextView item2_amount;
     private TextView item3_amount;
