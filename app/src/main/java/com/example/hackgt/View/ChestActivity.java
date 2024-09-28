@@ -14,7 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.hackgt.R;
 
 public class ChestActivity extends AppCompatActivity {
-    private Button chestBackButton;
+    private Button backMain;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,14 +26,15 @@ public class ChestActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        chestBackButton = findViewById(R.id.back_button_chest);
-        chestBackButton.setOnClickListener(new View.OnClickListener() {
+
+        backMain = findViewById(R.id.back_button_chest);
+        backMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChestActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
             }
         });
     }
+
 }
