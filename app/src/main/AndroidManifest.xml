@@ -25,6 +25,15 @@
 
         <!-- Main activity, set to exported "true" to allow launching the app -->
         <activity
+            android:name=".View.AnimalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.ChestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.ShopActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.MainActivity"
             android:exported="true" />
 

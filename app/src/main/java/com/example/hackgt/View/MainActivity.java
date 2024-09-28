@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,13 +47,18 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     LocalRecordingClient fitnessClient;
     LocalDataReadRequest readRequest;
+    private Button shopMove;
+    private Button chestMove;
+    private Button animalMove;
+    int coins = 0;
+    TextView amountOfCoins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.noar_gameplay);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.armode_button), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -65,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         TextView usernameTextView = findViewById(R.id.username_pb);
         stepsTaken = findViewById(R.id.stepsTaken);
         progressBar = findViewById(R.id.progressBar);
+
+        amountOfCoins = findViewById(R.id.amountCoins);
 
         usernameTextView.setText(username);
         checkGooglePlayVersion();
@@ -86,6 +95,33 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(this,100000);
             }
         },100000);
+
+        shopMove = findViewById(R.id.shop_button);
+        shopMove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ShopActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        chestMove = findViewById(R.id.chestscreen_button);
+        chestMove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ChestActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        animalMove = findViewById(R.id.animalscreen_button);
+        animalMove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AnimalActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -162,6 +198,9 @@ public class MainActivity extends AppCompatActivity {
                 steps = dp.getValue(field).asInt();
                 stepsTaken.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, stepGoal));
                 progressBar.setProgress(steps * 100 / Integer.parseInt(stepGoal));
+
+                coins = Math.floorDiv(steps, 50);
+                amountOfCoins.setText(String.format(Locale.ENGLISH, "Coins: %d", coins));
             }
         }
     }
