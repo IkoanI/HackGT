@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     LocalDataReadRequest readRequest;
     private Button shopMove;
     private Button chestMove;
+    private Button animalMove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +101,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ChestActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        animalMove = findViewById(R.id.animalscreen_button);
+        animalMove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AnimalActivity.class);
                 startActivity(intent);
             }
         });
