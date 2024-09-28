@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    implementation (libs.sceneform.android.sdk)
+  //  implementation (libs.sceneform.android.sdk)
     implementation(libs.play.services.fitness)
     implementation(libs.play.services.location)
     implementation(libs.appcompat)
