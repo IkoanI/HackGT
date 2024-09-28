@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -32,6 +33,7 @@ import com.google.ar.core.Point;
 import com.google.ar.core.TrackingState;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.ArSceneView;
+import com.google.ar.sceneform.assets.RenderableSource;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 import com.google.ar.sceneform.rendering.ModelRenderable;
@@ -89,38 +91,44 @@ public class ARActivity extends AppCompatActivity {
 
         // Load the model
         loadModel();
-
-        // Set a tap listener to place the object in AR
-        arFragment.setOnTapArPlaneListener((HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-            if (modelRenderable == null) {
-                return;
-
-            }
-
-            // Create the Anchor
-            Anchor anchor = hitResult.createAnchor();
-            AnchorNode anchorNode = new AnchorNode(anchor);
-            anchorNode.setParent(arFragment.getArSceneView().getScene());
-
-            // Create the transformable object and attach the model to it
-            TransformableNode modelNode = new TransformableNode(arFragment.getTransformationSystem());
-            modelNode.setParent(anchorNode);
-            modelNode.setRenderable(modelRenderable);
-            modelNode.select();
-        });
     }
 
     private void loadModel() {
+        Log.d("ARActivity", "Starting to load model");
         ModelRenderable.builder()
-                .setSource(this, R.raw.pug)  // Make sure model.obj is in res/raw
+                .setSource(this, R.raw.fox)
                 .build()
-                .thenAccept(renderable -> modelRenderable = renderable)
+                .thenAccept(renderable -> {
+                    modelRenderable = renderable;
+                    Log.d("ModelLoading", "Model successfully loaded");
+
+                    // Set a tap listener to place the object in AR
+                    arFragment.setOnTapArPlaneListener((HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
+                        if (modelRenderable == null) {
+                            Log.d("ARActivity", "ModelRenderable is null. Unable to place the model.");
+                            return;
+                        }
+
+                        Log.d("ARActivity", "Creating anchor and placing model");
+                        // Create the Anchor
+                        Anchor anchor = hitResult.createAnchor();
+                        AnchorNode anchorNode = new AnchorNode(anchor);
+                        anchorNode.setParent(arFragment.getArSceneView().getScene());
+
+                        // Create the transformable object and attach the model to it
+                        TransformableNode modelNode = new TransformableNode(arFragment.getTransformationSystem());
+                        modelNode.setParent(anchorNode);
+                        modelNode.setRenderable(modelRenderable);
+                        modelNode.select();
+                        Log.d("ARActivity", "Model placed in AR scene");
+                    });
+                })
                 .exceptionally(throwable -> {
-                    Toast.makeText(this, "Unable to load 3D model", Toast.LENGTH_LONG).show();
+                    Log.e("ModelLoading", "Unable to load 3D model", throwable);
+                    Toast.makeText(this, "Unable to load 3D model: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                     return null;
                 });
     }
-
 
     @Override
     protected void onResume() {
