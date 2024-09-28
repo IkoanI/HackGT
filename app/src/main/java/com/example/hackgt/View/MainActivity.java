@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     String stepGoal;
     TextView stepsTaken;
     ProgressBar progressBar;
+    LocalRecordingClient fitnessClient;
+    LocalDataReadRequest readRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +68,19 @@ public class MainActivity extends AppCompatActivity {
 
         usernameTextView.setText(username);
         checkGooglePlayVersion();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            getFitnessData();
-        }
+
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("TEST", "RAN");
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    getFitnessData();
+                }
+                readStepsData();
+                handler.postDelayed(this,1000);
+            }
+        },1000);
 
     }
 
@@ -88,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     public void getFitnessData(){
-        LocalRecordingClient fitnessClient = FitnessLocal.getLocalRecordingClient(this);
+        fitnessClient = FitnessLocal.getLocalRecordingClient(this);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -103,18 +116,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         fitnessClient.subscribe(LocalDataType.TYPE_STEP_COUNT_DELTA)
-                .addOnFailureListener(r -> {
-                    Log.e("Fitness Subscription", r.getMessage(), r.getCause());
-                });
+                .addOnFailureListener(r -> Log.e("Fitness Subscription", r.getMessage(), r.getCause()));
 
         ZonedDateTime endTime = LocalDateTime.now().atZone(ZoneId.systemDefault());
         ZonedDateTime startTime = endTime.minusWeeks(1);
-        LocalDataReadRequest readRequest = new LocalDataReadRequest.Builder()
+        readRequest = new LocalDataReadRequest.Builder()
                 .aggregate(LocalDataType.TYPE_STEP_COUNT_DELTA)
                 .bucketByTime(1, TimeUnit.DAYS)
                 .setTimeRange(startTime.toEpochSecond(), endTime.toEpochSecond(), TimeUnit.SECONDS)
                 .build();
 
+
+
+    }
+
+    public void readStepsData(){
         fitnessClient.readData(readRequest)
                 .addOnSuccessListener(r -> {
                     for(LocalBucket bucket : r.getBuckets()){
@@ -123,9 +139,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 })
-                .addOnFailureListener(r -> {
-                    Log.e("Fitness Client", r.getMessage(), r.getCause());
-                });
+                .addOnFailureListener(r -> Log.e("Fitness Client", r.getMessage(), r.getCause()));
     }
 
     public void dumpDataSet(LocalDataSet dataSet){
@@ -142,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
 
                 steps = dp.getValue(field).asInt();
                 stepsTaken.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, stepGoal));
-                Log.d("STEPS", String.format("%d", steps / Integer.parseInt(stepGoal)));
                 progressBar.setProgress(steps * 100 / Integer.parseInt(stepGoal));
             }
         }
