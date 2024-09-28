@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,10 @@ import java.util.stream.Stream;
 
 public class MainActivity extends AppCompatActivity {
     public static final int ACTIVITY_REQUEST = 1;
+    int steps = 0;
+    String stepGoal;
+    TextView stepsTaken;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +63,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         String username = intent.getStringExtra("Username");
-        String stepGoal = intent.getStringExtra("Goal");
+        stepGoal = intent.getStringExtra("Goal");
 
         TextView usernameTextView = findViewById(R.id.username_pb);
-        TextView stepsTaken = findViewById(R.id.stepsTaken);
+        stepsTaken = findViewById(R.id.stepsTaken);
+        progressBar = findViewById(R.id.progressBar);
 
         usernameTextView.setText(username);
-        stepsTaken.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", 0, stepGoal));
-
         checkGooglePlayVersion();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             getFitnessData();
         }
+
     }
 
 
@@ -140,6 +145,11 @@ public class MainActivity extends AppCompatActivity {
             for (LocalField field : dp.getDataType().getFields()) {
                 Log.i(TAG,"\tLocalField: " + field.getName() +
                         " LocalValue: " + dp.getValue(field));
+
+                steps = dp.getValue(field).asInt();
+                stepsTaken.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, stepGoal));
+                Log.d("STEPS", String.format("%d", steps / Integer.parseInt(stepGoal)));
+                progressBar.setProgress(steps * 100 / Integer.parseInt(stepGoal));
             }
         }
     }

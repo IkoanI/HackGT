@@ -2,6 +2,7 @@ package com.example.hackgt.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,8 @@ public class Login extends AppCompatActivity {
         EditText usernameInput = findViewById(R.id.username_input);
         EditText stepGoalInput = findViewById(R.id.step_goal_input);
         Button submit = findViewById(R.id.login_button);
+
+        stepGoalInput.setInputType(InputType.TYPE_CLASS_NUMBER);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
