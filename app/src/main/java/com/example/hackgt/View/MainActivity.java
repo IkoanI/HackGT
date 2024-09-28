@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     LocalRecordingClient fitnessClient;
     LocalDataReadRequest readRequest;
+    private Button move;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +85,14 @@ public class MainActivity extends AppCompatActivity {
             }
         },1000);
 
+        move = findViewById(R.id.shop_button);
+        move.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ShopActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
