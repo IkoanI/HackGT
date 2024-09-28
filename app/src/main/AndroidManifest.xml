@@ -41,6 +41,11 @@
             android:name=".View.ARActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".View.helloar.HelloArActivity"
+            android:exported="true" />
+
+
 
         <!-- Login activity -->
         <activity

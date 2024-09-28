@@ -96,7 +96,7 @@ public class ARActivity extends AppCompatActivity {
     private void loadModel() {
         Log.d("ARActivity", "Starting to load model");
         ModelRenderable.builder()
-                .setSource(this, R.raw.fox)
+                .setSource(this, R.raw.pug)
                 .build()
                 .thenAccept(renderable -> {
                     modelRenderable = renderable;
