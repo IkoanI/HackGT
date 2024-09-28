@@ -10,7 +10,9 @@ constraintlayout = "2.1.4"
 playServicesFitness = "21.2.0"
 playServicesLocation = "21.3.0"
 core = "1.45.0"
+sceneformAndroidSdk = "1.x.x"
 sceneformUx = "1.17.1"
+assets = "1.17.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -23,7 +25,9 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 play-services-fitness = { module = "com.google.android.gms:play-services-fitness", version.ref = "playServicesFitness" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 core = { group = "com.google.ar", name = "core", version.ref = "core" }
+sceneform-android-sdk = { module = "com.github.thomasgorisse:sceneform-android-sdk", version.ref = "sceneformAndroidSdk" }
 sceneform-ux = { group = "com.google.ar.sceneform.ux", name = "sceneform-ux", version.ref = "sceneformUx" }
+assets = { group = "com.google.ar.sceneform", name = "assets", version.ref = "assets" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
