@@ -47,6 +47,7 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShopActivity.this, MainActivity.class);
+
                 startActivity(intent);
             }
         }));
