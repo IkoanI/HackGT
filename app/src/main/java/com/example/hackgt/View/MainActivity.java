@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     private Button shopMove;
     private Button chestMove;
     private Button animalMove;
+    int coins = 0;
+    TextView amountOfCoins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         TextView usernameTextView = findViewById(R.id.username_pb);
         stepsTaken = findViewById(R.id.stepsTaken);
         progressBar = findViewById(R.id.progressBar);
+
+        amountOfCoins = findViewById(R.id.amountCoins);
 
         usernameTextView.setText(username);
         checkGooglePlayVersion();
@@ -189,6 +193,9 @@ public class MainActivity extends AppCompatActivity {
                 steps = dp.getValue(field).asInt();
                 stepsTaken.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, stepGoal));
                 progressBar.setProgress(steps * 100 / Integer.parseInt(stepGoal));
+
+                coins = Math.floorDiv(steps, 50);
+                amountOfCoins.setText(String.format(Locale.ENGLISH, "Coins: %d", coins));
             }
         }
     }
