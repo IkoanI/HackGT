@@ -80,6 +80,7 @@ public class AnimalActivity extends AppCompatActivity {
                 if (item1 > 0) {
                     item1 -= 1;
                     progressPercent += 5;
+                    progressChecker();
                 }
             }
         });
@@ -91,6 +92,7 @@ public class AnimalActivity extends AppCompatActivity {
                 if (item2 > 0) {
                     item2 -= 1;
                     progressPercent += 40;
+                    progressChecker();
                 }
             }
         });
@@ -102,11 +104,17 @@ public class AnimalActivity extends AppCompatActivity {
                 if (item3 > 0) {
                     item3 -= 1;
                     progressPercent += 100;
+                    progressChecker();
                 }
             }
         });
-
     }
 
+    private void progressChecker() {
+        if (progressPercent >= 100) {
+            progressPercent -= 100;
+            level += 1;
+        }
+    }
 
 }

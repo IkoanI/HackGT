@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private Button shopMove;
     private Button chestMove;
     private Button animalMove;
-    public static int coins = 0;
+    public static int coins = 500;
     TextView amountOfCoins;
 
     @Override
