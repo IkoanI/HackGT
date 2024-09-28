@@ -6,7 +6,7 @@ public class Chests {
 
     public Chests(int encounterStep) {
         this.startCount = encounterStep;
-        this.endCount = startCount+500;
+        this.endCount = startCount+9;
         this.reward = (int) (Math.random() * 99 + 1);
     }
 

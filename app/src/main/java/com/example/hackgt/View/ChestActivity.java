@@ -41,7 +41,7 @@ public class ChestActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
         });
-
+        /*
         chest1text = findViewById(R.id.step_chest1);
         chest2text = findViewById(R.id.step_chest2);
         chest3text = findViewById(R.id.step_chest3);
@@ -51,7 +51,7 @@ public class ChestActivity extends AppCompatActivity {
         chest2text.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, Player.chestInventory.getHead().getNext().getData().getEndCount()));
         chest3text.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, Player.chestInventory.getHead().getNext().getNext().getData().getEndCount()));
         chest4text.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, Player.chestInventory.getHead().getNext().getNext().getNext().getData().getEndCount()));
-
+         */
 
 
 
