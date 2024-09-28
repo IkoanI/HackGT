@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/step_progress_text"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
@@ -87,13 +87,14 @@
         app:layout_constraintStart_toEndOf="@+id/chestscreen_button" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/stepsTaken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:text="# of Steps/Goal"
+        android:text="Steps: # / #"
         app:layout_constraintBottom_toTopOf="@+id/progressBar2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
