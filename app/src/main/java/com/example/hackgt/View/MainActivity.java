@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     LocalRecordingClient fitnessClient;
     LocalDataReadRequest readRequest;
+    private Button shopMove;
+    private Button chestMove;
+    private Button animalMove;
+    int coins = 0;
+    TextView amountOfCoins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         stepsTaken = findViewById(R.id.stepsTaken);
         progressBar = findViewById(R.id.progressBar);
 
+        amountOfCoins = findViewById(R.id.amountCoins);
+
         usernameTextView.setText(username);
         checkGooglePlayVersion();
 
@@ -84,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
         },1000);
 
-        Button shopMove = findViewById(R.id.shop_button);
+        shopMove = findViewById(R.id.shop_button);
         shopMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,11 +100,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button chestMove = findViewById(R.id.chestscreen_button);
+        chestMove = findViewById(R.id.chestscreen_button);
         chestMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ChestActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        animalMove = findViewById(R.id.animalscreen_button);
+        animalMove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AnimalActivity.class);
                 startActivity(intent);
             }
         });
@@ -177,6 +193,9 @@ public class MainActivity extends AppCompatActivity {
                 steps = dp.getValue(field).asInt();
                 stepsTaken.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, stepGoal));
                 progressBar.setProgress(steps * 100 / Integer.parseInt(stepGoal));
+
+                coins = Math.floorDiv(steps, 50);
+                amountOfCoins.setText(String.format(Locale.ENGLISH, "Coins: %d", coins));
             }
         }
     }
