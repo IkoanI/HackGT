@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,11 +79,6 @@ public class MainActivity extends AppCompatActivity {
         usernameTextView.setText(username);
         checkGooglePlayVersion();
 
-        findViewById(R.id.armode_button).setOnClickListener(v -> {
-            Intent arIntent = new Intent(MainActivity.this, HelloArActivity.class);
-            startActivity(arIntent);
-        });
-
         Handler handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -95,27 +91,19 @@ public class MainActivity extends AppCompatActivity {
             }
         },1000);
 
-        Button shopMove = findViewById(R.id.shop_button);
+        ImageView shopMove = findViewById(R.id.shop_button);
         shopMove.setOnClickListener(v -> {
             Intent intent1 = new Intent(MainActivity.this, ShopActivity.class);
             startActivity(intent1);
         });
 
-        Button chestMove = findViewById(R.id.chestscreen_button);
-        chestMove.setOnClickListener(v -> {
-            Intent intent12 = new Intent(MainActivity.this, ChestActivity.class);
-            startActivity(intent12);
-        });
-
-        Button animalMove = findViewById(R.id.animalscreen_button);
+        ImageView animalMove = findViewById(R.id.animalscreen_button);
         animalMove.setOnClickListener(v -> {
             Intent intent13 = new Intent(MainActivity.this, AnimalActivity.class);
             startActivity(intent13);
         });
 
     }
-
-
 
     public void checkGooglePlayVersion(){
         int hasMinPlayServices = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
