@@ -43,14 +43,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/animalscreen_button"
@@ -65,8 +57,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:textSize="20sp"
         android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
@@ -76,47 +68,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Steps: # / #"
-        android:textSize="50sp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <ImageView
-        android:id="@+id/chest1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/chest"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:src="@drawable/treasure"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/chest2"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/chest2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/treasure"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/chest3"
-        app:layout_constraintStart_toEndOf="@id/chest1" />
-
-    <ImageView
-        android:id="@+id/chest3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/treasure"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/chest4"
-        app:layout_constraintStart_toEndOf="@id/chest2" />
-
-    <ImageView
-        android:id="@+id/chest4"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/treasure"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/chest3" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -136,7 +102,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="580dp" />
+        app:layout_constraintGuide_begin="335dp" />
+
+
+    <Button
+        android:id="@+id/openChest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#800000"
+        android:text="Locked"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:layout_marginBottom="50dp"
+        android:enabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chest" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
