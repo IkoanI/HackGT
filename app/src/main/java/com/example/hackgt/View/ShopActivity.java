@@ -49,10 +49,9 @@ public class ShopActivity extends AppCompatActivity {
         Button item1bt = findViewById(R.id.item_bt1);
         item1bt.setOnClickListener(v -> {
             if (Player.coins >= 10) {
-                Player.spent += 10;
+                Player.coins -= 10;
                 Player.items[0] += 1;
                 item1_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[0]));
-                Player.coins -= 10;
                 coinWord.setText(String.format(Locale.ENGLISH, "Coins: %d", Player.coins));
             }
         });
@@ -60,7 +59,6 @@ public class ShopActivity extends AppCompatActivity {
         Button item2bt = findViewById(R.id.item_bt2);
         item2bt.setOnClickListener(v -> {
             if (Player.coins >= 35) {
-                Player.spent += 35;
                 Player.items[1] += 1;
                 item2_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[1]));
                 Player.coins -= 35;
@@ -71,7 +69,6 @@ public class ShopActivity extends AppCompatActivity {
         Button item3bt = findViewById(R.id.item_bt3);
         item3bt.setOnClickListener(v -> {
             if (Player.coins > 75) {
-                Player.spent += 75;
                 Player.items[2] += 1;
                 item3_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[2]));
                 Player.coins -= 75;

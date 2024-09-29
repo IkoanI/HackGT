@@ -3,6 +3,8 @@ package com.example.hackgt.View;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,9 +19,11 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.widget.ImageViewCompat;
 
 import com.example.hackgt.R;
 import com.example.hackgt.View.helloar.HelloArActivity;
@@ -46,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
     public static int steps = 0;
     String stepGoal;
     TextView stepsTaken;
-    ProgressBar progressBar;
     LocalRecordingClient fitnessClient;
     LocalDataReadRequest readRequest;
     TextView amountOfCoins;
     int chestThreshold;
+    Button openChest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,16 +67,26 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        openChest = findViewById(R.id.openChest);
+
+        openChest.setOnClickListener(view -> {
+            Player.coins += (int) (Math.random() * 99 + 1);
+            amountOfCoins.setText(String.format(Locale.ENGLISH, "%d", Player.coins));
+            openChest.setEnabled(false);
+            openChest.setText("Locked");
+            openChest.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#800000")));
+        });
+
         Intent intent = getIntent();
 
         String username = intent.getStringExtra("Username");
         stepGoal = intent.getStringExtra("Goal");
 
-        chestThreshold = (int) (Math.random() * 499 + 1);
+        assert stepGoal != null;
+        chestThreshold = Integer.parseInt(stepGoal);
 
         TextView usernameTextView = findViewById(R.id.username_pb);
         stepsTaken = findViewById(R.id.stepsTaken);
-        progressBar = findViewById(R.id.progressBar);
 
         amountOfCoins = findViewById(R.id.amountCoins);
 
@@ -166,26 +180,17 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 steps -= Player.baseSteps;
-                stepsTaken.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, stepGoal));
 
-                progressBar.setProgress(steps * 100 / Integer.parseInt(stepGoal));
-
-                Log.d("TEST", String.valueOf(chestThreshold));
-                if (steps >= chestThreshold && Player.chestInventory.size() < 5) {
-                    Chests newChest = new Chests(steps);
-                    Player.chestInventory.add(newChest);
-                    chestThreshold += (int) (Math.random() * 499 + 1);
-                    Toast.makeText(this, "You found a chest!", Toast.LENGTH_SHORT).show();
+                if(steps >= chestThreshold){
+                    chestThreshold += Integer.parseInt(stepGoal);
+                    openChest.setText("Open");
+                    openChest.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#32CD32")));
+                    openChest.setEnabled(true);
                 }
 
-                if (!Player.chestInventory.isEmpty() && steps >= Player.chestInventory.get(0).getEndCount()) {
-                    Toast.makeText(this, "Chest opened!", Toast.LENGTH_SHORT).show();
-                    Player.spent -= Player.chestInventory.get(0).getReward();
-                    Player.chestInventory.removeFirst();
-                }
+                amountOfCoins.setText(String.valueOf(Player.coins));
+                stepsTaken.setText(String.format(Locale.ENGLISH, "Steps taken: %d / %s", steps, chestThreshold));
 
-                Player.coins = Math.floorDiv(steps, 1) - Player.spent;
-                amountOfCoins.setText(String.format(Locale.ENGLISH, "Coins: %d", Player.coins));
             }
         }
     }
