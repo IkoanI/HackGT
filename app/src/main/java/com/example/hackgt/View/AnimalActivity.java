@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import java.util.Locale;
 
 public class AnimalActivity extends AppCompatActivity {
     TextView item1_amount, item2_amount, item3_amount, levelCurr;
+    Button arMove;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +93,12 @@ public class AnimalActivity extends AppCompatActivity {
                 progress.setProgress(Player.animalProgress);
             }
         });
+
+        Button ARMove = findViewById(R.id.ARbutton);
+        ARMove.setOnClickListener(v -> {
+            Intent intent13 = new Intent(AnimalActivity.this, ARActivity.class);
+            startActivity(intent13);
+        });
     }
 
     private void progressChecker() {
@@ -106,4 +114,5 @@ public class AnimalActivity extends AppCompatActivity {
         item2_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[1]));
         item3_amount.setText(String.format(Locale.ENGLISH, "Amount: %d", Player.items[2]));
     }
+
 }
