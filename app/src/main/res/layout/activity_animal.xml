@@ -5,7 +5,8 @@
     android:id="@+id/animalXML"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shop_screen_background"
+    android:background="@drawable/gameplay_noar_bg"
+    android:backgroundTint="#D9B986"
     android:padding="16dp">
 
     <TextView
@@ -13,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Animal Name"
-        android:textColor="@color/white"
+        android:hint="Animal Name"
+        android:textColorHint="@color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,9 +47,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
-        android:text="Level"
-        android:textColor="@color/white"
         android:paddingBottom="50dp"
+        android:text="Level"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -57,6 +58,7 @@
         android:id="@+id/animal_food2_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:background="#FFFFFF"
         android:src="@drawable/banana_ar"
         app:layout_constraintEnd_toStartOf="@+id/animal_food3_image"
         app:layout_constraintStart_toEndOf="@+id/animal_food1"
@@ -66,9 +68,9 @@
         android:id="@+id/animal_food1"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:src="@drawable/apple_ar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/level_text"
-        android:src="@drawable/apple_ar" />
+        app:layout_constraintTop_toBottomOf="@+id/level_text" />
 
     <TextView
         android:id="@+id/animal_food1_text"
@@ -76,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Amount"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/animal_food1"
         app:layout_constraintStart_toStartOf="@+id/animal_food1"
         app:layout_constraintTop_toBottomOf="@+id/animal_food1" />
@@ -87,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Amount"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/animal_food2_image"
         app:layout_constraintStart_toStartOf="@+id/animal_food2_image"
         app:layout_constraintTop_toBottomOf="@+id/animal_food2_image" />
@@ -97,6 +99,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:backgroundTint="#D9B986"
+        android:drawableLeft="@drawable/feed_icon"
         android:text="Feed"
         app:layout_constraintEnd_toEndOf="@+id/animal_food1_text"
         app:layout_constraintStart_toStartOf="@+id/animal_food1_text"
@@ -107,10 +111,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:backgroundTint="#D9B986"
+        android:drawableLeft="@drawable/feed_icon"
         android:text="Feed"
         app:layout_constraintEnd_toEndOf="@+id/animal_food2_text"
         app:layout_constraintStart_toStartOf="@+id/animal_food2_text"
-        app:layout_constraintTop_toBottomOf="@+id/animal_food2_text" />
+        app:layout_constraintTop_toBottomOf="@+id/animal_food2_text" />/>
 
     <ImageView
         android:id="@+id/animal_food3_image"
@@ -126,7 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Amount"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/animal_food3_image"
         app:layout_constraintStart_toStartOf="@+id/animal_food3_image"
         app:layout_constraintTop_toBottomOf="@+id/animal_food3_image" />
@@ -136,6 +142,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:backgroundTint="#D9B986"
+        android:drawableLeft="@drawable/feed_icon"
         android:text="Feed"
         app:layout_constraintEnd_toEndOf="@+id/animal_food3_text"
         app:layout_constraintStart_toStartOf="@+id/animal_food3_text"
@@ -146,9 +154,31 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
+        android:backgroundTint="#D9B986"
+        android:drawableLeft="@drawable/back_icon"
         android:text="Back"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/ARbutton"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="190dp"
+        android:backgroundTint="#D9B986"
+        android:shadowColor="#D9B986"
+        android:text="AR"
+        android:textColor="@color/white"
+        android:textColorHighlight="#D9B986"
+        android:textColorHint="#D9B986"
+        android:textColorLink="#D9B986"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="#D9B986"
+        android:drawableLeft="@drawable/ar_icon"
+        android:drawableRight="@drawable/ar_icon" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

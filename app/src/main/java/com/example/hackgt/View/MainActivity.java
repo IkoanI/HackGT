@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         String username = intent.getStringExtra("Username");
+        Player.animalName = intent.getStringExtra("AnimalName");;
         stepGoal = intent.getStringExtra("Goal");
 
         assert stepGoal != null;
@@ -194,6 +195,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }

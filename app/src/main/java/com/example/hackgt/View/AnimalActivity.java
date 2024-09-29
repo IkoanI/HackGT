@@ -3,9 +3,13 @@ package com.example.hackgt.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +23,7 @@ import java.util.Locale;
 
 public class AnimalActivity extends AppCompatActivity {
     TextView item1_amount, item2_amount, item3_amount, levelCurr;
+    Button arMove;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,9 @@ public class AnimalActivity extends AppCompatActivity {
 
         ProgressBar progress = findViewById(R.id.animal_level_pb);
         progress.setProgress(Player.animalProgress);
+
+        TextView aniName = findViewById(R.id.animal_name);
+        aniName.setText(Player.animalName);
 
         levelCurr = findViewById(R.id.level_text);
 
@@ -84,6 +92,12 @@ public class AnimalActivity extends AppCompatActivity {
                 updateItems();
                 progress.setProgress(Player.animalProgress);
             }
+        });
+
+        Button ARMove = findViewById(R.id.ARbutton);
+        ARMove.setOnClickListener(v -> {
+            Intent intent13 = new Intent(AnimalActivity.this, ARActivity.class);
+            startActivity(intent13);
         });
     }
 
