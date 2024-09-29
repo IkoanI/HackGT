@@ -18,6 +18,7 @@ package com.example.hackgt.View.helloar;
 
 import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.graphics.ColorSpace;
 import android.media.Image;
 import android.opengl.GLES30;
 import android.opengl.GLSurfaceView;
@@ -84,6 +85,16 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import org.rajawali3d.Object3D;
+import org.rajawali3d.loader.LoaderOBJ;
+import org.rajawali3d.loader.ParsingException;
+
+import de.javagl.obj.Mtl;
+import de.javagl.obj.MtlReader;
+import de.javagl.obj.Obj;
+import de.javagl.obj.ObjReader;
+import de.javagl.obj.ObjUtils;
 
 /**
  * This is a simple example that shows how to create an augmented reality (AR) application using the
@@ -346,6 +357,8 @@ public class HelloArActivity extends AppCompatActivity implements SampleRender.R
     FullScreenHelper.setFullScreenOnWindowFocusChanged(this, hasFocus);
   }
 
+
+
   @Override
   public void onSurfaceCreated(SampleRender render) {
     // Prepare the rendering objects. This involves reading shaders and 3D model files, so may throw
@@ -428,7 +441,7 @@ public class HelloArActivity extends AppCompatActivity implements SampleRender.R
               Texture.WrapMode.CLAMP_TO_EDGE,
               Texture.ColorFormat.LINEAR);
 
-      virtualObjectMesh = Mesh.createFromAsset(render, "models/pawn.obj");
+      virtualObjectMesh = Mesh.createFromAsset(render, "models/model.obj");
       virtualObjectShader =
           Shader.createFromAssets(
                   render,
@@ -852,6 +865,7 @@ public class HelloArActivity extends AppCompatActivity implements SampleRender.R
     }
     session.configure(config);
   }
+
 }
 
 /**

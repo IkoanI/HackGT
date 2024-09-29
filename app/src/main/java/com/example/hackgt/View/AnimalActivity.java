@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.hackgt.R;
+import com.example.hackgt.View.helloar.HelloArActivity;
 
 import java.util.Locale;
 
@@ -96,7 +97,7 @@ public class AnimalActivity extends AppCompatActivity {
 
         Button ARMove = findViewById(R.id.ARbutton);
         ARMove.setOnClickListener(v -> {
-            Intent intent13 = new Intent(AnimalActivity.this, ARActivity.class);
+            Intent intent13 = new Intent(AnimalActivity.this, HelloArActivity.class);
             startActivity(intent13);
         });
     }

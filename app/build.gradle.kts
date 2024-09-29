@@ -54,6 +54,7 @@ dependencies {
     implementation (libs.sceneform.ux)
     // implementation("com.google.ar.sceneform.ux:sceneform-ux:1.16.0")
     // implementation("com.gorisse.thomas.sceneform:sceneform:1.23.0")
+    implementation ("org.rajawali3d:rajawali:1.1.970")
     implementation("de.javagl:obj:0.2.1")
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("com.google.android.material:material:1.1.0")
