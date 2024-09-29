@@ -26,7 +26,7 @@
         android:layout_width="192dp"
         android:layout_height="213dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/banana_ar"
+        android:src="@drawable/pug"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -166,19 +166,18 @@
         android:id="@+id/ARbutton"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="190dp"
         android:backgroundTint="#D9B986"
+        android:drawableLeft="@drawable/ar_icon"
+        android:drawableRight="@drawable/ar_icon"
         android:shadowColor="#D9B986"
         android:text="AR"
         android:textColor="@color/white"
         android:textColorHighlight="#D9B986"
         android:textColorHint="#D9B986"
         android:textColorLink="#D9B986"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/back_button_animal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="#D9B986"
-        android:drawableLeft="@drawable/ar_icon"
-        android:drawableRight="@drawable/ar_icon" />
+        app:strokeColor="#D9B986" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
