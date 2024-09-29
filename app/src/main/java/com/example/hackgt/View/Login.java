@@ -50,6 +50,7 @@ public class Login extends AppCompatActivity {
                 Intent intent = new Intent(Login.this, MainActivity.class);
                 intent.putExtra("Username", username);
                 intent.putExtra("Goal", stepGoal);
+                intent.putExtra("AnimalName", animalName);
                 startActivity(intent);
             }
         });

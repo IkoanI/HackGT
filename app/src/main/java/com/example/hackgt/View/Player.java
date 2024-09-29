@@ -9,4 +9,5 @@ public class Player {
     public static int[] items = {0, 0 ,0};
     public static int animalProgress = 0;
     public static int animalLevel = 0;
+    public static String animalName;
 }

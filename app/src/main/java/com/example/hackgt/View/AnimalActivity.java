@@ -36,6 +36,9 @@ public class AnimalActivity extends AppCompatActivity {
         ProgressBar progress = findViewById(R.id.animal_level_pb);
         progress.setProgress(Player.animalProgress);
 
+        TextView aniName = findViewById(R.id.animal_name);
+        aniName.setText(Player.animalName);
+
         levelCurr = findViewById(R.id.level_text);
 
         item1_amount = findViewById(R.id.animal_food1_text);
